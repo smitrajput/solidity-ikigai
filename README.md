@@ -61,3 +61,9 @@ positions 0x8be65246 // selector
 1. [Link](https://docs.soliditylang.org/en/v0.8.20/abi-spec.html#types): `int<M>`: two’s complement signed integer type of `M` bits, `0 < M <= 256`, `M % 8 == 0.` How come `256` for `int`?
 2. [Link](https://docs.soliditylang.org/en/v0.8.20/abi-spec.html#non-standard-packed-mode): ‘Furthermore, structs as well as nested arrays are not supported.’ Then also, ‘The encoding of `string` or `bytes` does not apply padding at the end, unless it is part of an array or ***struct*** (then it is padded to a multiple of 32 bytes)’. struct? Choose a side, bitch.
 3. [Link](https://docs.soliditylang.org/en/v0.8.20/assembly.html#things-to-avoid): what exactly are we avoiding here?
+
+## PwningEth Blog Summaries
+
+1. Aurora: delegatecall precompile depositETH contract (from malicious contract) that emits legit looking event but doesn’t really check if ETH was actually deposited. Because msg.value on malicious contract will persist as msg.value for precompile, and because it’s a precompile (special contract that extends EVM), smh its logic==state, even though malicious contract’s state should have been retained (coz that’s how delegatecall works) and aurora engine should have been able to distinguish this event from event generated on normal call (but it doesn’t).
+2. Moonbeam: delegatecall retains msg.sender, and for precompile contracts logic==state. Make innocent callers call malicious contract and use this call to delegatecall to ‘asset’ precompile contracts, to give the attacker infinite approvals on these assets..
+3. Polkadot Frontier EVM: ETH balances limit → 256 bits while Polka substrate balances limit → 128 bits. Bypass EVM implementation of transfer using (1 << 128) to 0 truncate and then add more balance to give attacker huge balance on transfer of wrapped assets.
