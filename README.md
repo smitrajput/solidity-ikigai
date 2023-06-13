@@ -121,3 +121,53 @@ positions 0x8be65246 // selector
 48. Math/Crypto fns: addmod(), mulmod(), keccak256(bytes memory), sha256(b m), ripemd160(b m), ecrecover(bytes32 hash, uint8 v, bytes32 r, bytes32 s). ecrecover() returns the address that signed the signature from sig details
 49. ecrecover() is vulnerable to sig malleability attack i.e. 2 valid sigs possible coz of 2 possible values of s in v, r, s, 1 each in lower order and higher order. Openzeppelin's ECDSA fixes this by specifying v=27/28, s=lower
 50. ETH sent via selfdestruct to a contract DOES NOT TRIGGER its receive()
+51. If there's a revert after selfdestruct() in the same txn, it can undo contract destruction, as the chain-state is reverted back.
+52. type(myContractName).name, .creationCode, .runtimeCode
+53. type(myInterfaceName).interfaceId
+54. type(myInteger).max, .min => returns min and max value of int type of myInteger. For eg 0 and 255 for uint8 myInteger
+55. non-booleans CANNOT be (implicitly) converted to boolean. For eg if(1) != if(true)
+56. assert() => invariants, internal errors || require() => external/user interactions/dependency errors
+57. Exceptions: error signatures: Error(string) => external/user interaction errors, Panic(uint256) => internal errors/assertions
+58. Low-level-calls: call/staticcall/delegatecall RETURN TRUE even if destination contract DOES NOT exist
+59. Panic Error Code: 0x01 - false arg in assert, 0x11 - over/underflow, 0x12 - div/mod by 0, 0x31: pop() empty array, 0x32: out-of-bounds
+60. revert([String]) vs revert CustomError([arg1, ...])
+61. catch blocks: catch Error(string reason), catch Panic(uint256 errorCode), catch (bytes lowLevelData), catch
+62. function that are not implemented and meant to be overriden by its derived classes must be marked 'virtual'. Functions which ARE overriding these virtual functions need to be marked 'override'.
+63. During multiple inheritance, specify contracts from left to right as 'most base-like' to 'most derived'
+64. C3 linearization: to call a fn specified in multiple base classes, compiler starts checking inherited contracts from right to left as specified on the first line i.e. contract A is B, C, D {} -> first D is checked, then C, B
+65. abstract: at least 1 fn unimplemented, interface: no fn implemented, no constructor,state vars,inheritance, all fns external, library: logic used by contracts using delegatecall
+66. using A for B => fns in library A are now attached to type B. For eg. using SafeMath for uint256. Their scope is restricted to contract itself since 0.7, before it was inherited by child contracts
+67. to call a fn exactly 1 level up inheritance heirarchy, super.fnName() is used
+68. on overriding fns, mutability changes are allowed only to more stricter forms: public -> external, non-payable -> view/pure, view -> pure. payable can't be changed to anything
+69. all fns in interface are virtual by default
+70. public state variables can override external fns in base classes that have same name, parameters and return-type as getter fns of these public state variables. But public state vars themselves cannot be overriden.
+71. modifiers can be overriden exactly the way fns can be.
+72. constructor of base classes are called using C3 linearization
+73. Libraries ARE STATELESS. They don't have state vars, can't receive ETH, can't be destroyed, can't inherit or be inherited. Can be called directly only for view/pure fns, need to delegatecall to change state. Calling contract can supply state vars tho.
+74. structs and arrays always start with new storage slot (instead of getting packed inside previous slots even if space is available). And following items also always start with new storage slots
+75. inherited state vars are stored in C3 linearized fashion: most-base to most-derived, and vars of diff contracts can be packed in 1 slot if space allows
+76. While packing storage of state vars, consider BOTH sizes of vars AND read/write preferences of those vars. Coz packing together vars which are not required to be read/written together can result in increased gas costs, instead of decreased ones. As the only var to be read needs to be isolated from others using masking of other vars which requires additional gas costs
+77. Dynamic array A -> stored at slot P. Then at P, current size of A is stored. A[0] is stored at keccak256(P), A[1] at keccak256(P)+1 and so on. These can be packed together too if possible
+78. Mapping M -> slot P: P stores nothing. M[key:k] i.e. value corresponding to 1st key, is stored at keccak256(h(k).P). h is 32 padded if k is value type. [h is keccak256() if k is string/byte type. → highly doubt this as k can never be reference type]
+79. bytes and string (S) storage at slot P: so P stores S.length*2 + S[0] if S[0] <= 31 bytes. And P stores only S.length*2 + 1 and S[0] is stored at keccack256(P) if S[0] >= 32 bytes. Now in P, if right-most digit (lowest bit) is 1 => S[0] storage starts at keccack256(P) and if right-most digit is 0 => S[0] storage starts at P {corresponding to S.length*2}.
+80. 1st 4 reserved memory slots: 1st 2 as scratch space for hashing, 3rd as free memory pointer, 4th as zero slot: used as initial value for dynamic memory arrays
+81. free memory pointer => location: 0x40, init value: 0x80, gets updated as memory gets used
+82. memory CAN'T BE FREED manually. So NEVER assume default 0 values for memory locations.
+83. Assembly: lang Yul, value types can directly be used as local vars, local vars that refer to memory/calldata evaluate to variable address NOT value hence effectively reference, storage vars defined by *.slot (location) and *.offset (position in that slot)
+84. sol 0.6, 0.7, 0.8 breaking changes in Solidity 201 (Block 2): 28:00
+85. mapping cannot be defined inside struct/array in memory (but allowed in storage) since Solidity 0.7
+86. OZ's ERC777's hooks are 1 way to avoid approve/transferFrom
+87. OZ's CREATE2 lib allows deploy(uint ethAmount, bytes32 salt, bytes bytecode) and computeAddress(bytes32 salt, bytecodehash) to deterministic contract addresses
+88. OZ's Multicall lib to batch multiple txns into 1
+89. OZ's String lib: toString(uint value): uint -> ASCII String Decimal, similarly for toHexSrting || UNCLEAR (probably 12 → hex’xyz’)
+90. OZ's MerkleProof: to check if a leaf is part of a merkle tree or not
+91. OZ's SignatureChecker lib allows creating signs for EOA (ECDSA) and for contracts (ERC-1271) for eg for smart wallets
+92. OZ's EIP-712 lib allows signing and hashing of type structured data, instead of just binary blobs. Check if devs have specified chainID, contract address to prevent replay attacks
+93. OZ's Escrow and ConditionalEscrow: conditional escrow provides condition on withdrawal, RefundEscrow: allows refund to multiple depositors, on top of ConditionalEscrow
+94. OZ's ERC-165: to check if a contract supports a particular interface
+95. OZ's SafeCast: for safe downcasting of types. For eg: uin256 -> uint128/uint64, simmy for int256
+96. EnumerableMap: only exists for mapping (uint256 => address). Enumerable in O(n)
+97. EnumberableSet: supported types: bytes/address/uint256. Enumerable in O(n)
+98. BitMap: maps uint256 -> bool, wherein each bit in this uint256 var represents a bool
+99. PaymentSplitter, TimelockController: for adding timelocks to a contract
+100. Context: support for meta-txns, ERC2771Context: tx signer -> gas relay -> trusted forwarder (verifies txn) -> destination contract
