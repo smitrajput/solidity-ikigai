@@ -171,3 +171,18 @@ positions 0x8be65246 // selector
 98. BitMap: maps uint256 -> bool, wherein each bit in this uint256 var represents a bool
 99. PaymentSplitter, TimelockController: for adding timelocks to a contract
 100. Context: support for meta-txns, ERC2771Context: tx signer -> gas relay -> trusted forwarder (verifies txn) -> destination contract
+101. MinimalForwarder: implements trusted forwarder in 100
+102. Proxy: to implement proxy in proxy<>implementation contract pattern
+103. ERC1967Proxy: 102, but upgradabale. Allows changing impl contract
+104. TransparentUpgradableProxy: has Admin. All admin calls restricted to proxy contract. All non-admin calls delegated to impl contract. Hence solving selector clash problem between proxy and impl i.e. fn selector of proxy = impl, hence confused which one to call
+105. ProxyAdmin: admin contract of 104
+106. BeaconProxy: 102, but impl address coming from UpgradeableBeacon contract and it is stored at ERC1967 specified slot
+107. UpgradeableBeacon: support BeaconProxy to point to impl contract
+108. Clones: impl ERC1167 ie Minimal Proxy contracts: where all impl contracts are clones of a specific bytecode, and all calls are delegated to known fixed address
+109. Initializable: impl contracts NEED to impl initialize() to initialise the state of proxy contract RIGHT after impl contract is created (in context of proxy’s state || also in context of its own state), and this initialize() must only be callable ONCE. So Initializable lib helps impl contracts in implementing this. impl contract's constructor cannot be used for this, as that can only change state of impl contract, not of proxy's
+110. While both of these share the same interface for upgrades, in UUPS (**Universal Upgradeable Proxy Standard**) proxies the upgrade is handled by the implementation, and can eventually be removed. Transparent proxies, on the other hand, include the upgrade and admin logic in the proxy itself. This means `[TransparentUpgradeableProxy` 28](https://docs.openzeppelin.com/contracts/4.x/api/proxy#TransparentUpgradeableProxy)
+ is more expensive to deploy than what is possible with UUPS proxies.
+111. Dappsys' DSProxy: 102, but also allows CREATION of impl contract along with making calls to it
+112. DSMath: SafeMath + fixed-point math + wad (18 decimals), ray (27 decimals) support (wmul, wdiv, rmul, rdiv, rpow)
+113. DSAuth: enables authorisation by DSGuard: has access control list (ACL) of [srcAddr][fnSign][destAddr] => boolean
+114. DSRoles: role based ACL, Root Users, Public Capabilities, Role Capabilities -> non-root, non-public capabs
