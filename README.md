@@ -209,3 +209,8 @@ positions 0x8be65246 // selector
 18. Critical addresses should be changed in 2 steps and not 1. That is, grant/approve + claim by new address, instead of direct change to new address
 19. DON’T make state changes INSIDE assert predicates. assert() → invariants (failures not expected), require() → validate user inputs (failures expected). Before v0.8.0, assert used INVALID opcode which consumed all remaining gas, require used REVERT opcode which refunded it. After 0.8, both are REVERT
 20. for sol < 0.5.0, visibility of fns was optional and defaulted to public. After, it became mandatory
+21. while defining inheritance list, recommended order is from Most general → Most specific
+22. structs/arrays/mappings as fn parameters were optionally required to specify memory/storage for call by value/reference before v0.5.0. Became mandatory after
+23. use of fn type vars in assembly can cause arbitrary jumps to code parts
+24. use abi.encode() > abi.encodePacked() as encodePacked results in hash collisions when multiple variable length args are being used, as encodePacked doesn’t zero-pad the args and also doesn’t save args length, for packing. If super-necessary to use encodePacked, ensure only 1 variable length arg
+25. variables with size < 32 bytes have dirty bits remaining on higher-order bits, due to previous writes. This data when passed as [msg.data](http://msg.data) can cause malleability/non-uniqueness
