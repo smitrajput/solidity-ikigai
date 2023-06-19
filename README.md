@@ -186,3 +186,26 @@ positions 0x8be65246 // selector
 112. DSMath: SafeMath + fixed-point math + wad (18 decimals), ray (27 decimals) support (wmul, wdiv, rmul, rdiv, rpow)
 113. DSAuth: enables authorisation by DSGuard: has access control list (ACL) of [srcAddr][fnSign][destAddr] => boolean
 114. DSRoles: role based ACL, Root Users, Public Capabilities, Role Capabilities -> non-root, non-public capabs
+
+## Security Pitfalls, Best Practices 101
+
+1. derived contracts calling unimplemented constructors of base contracts
+2. from v0.4.5 to v0.6.8, non-payable constructors that had base constructors defined, DID NOT REVERT when ether was sent to them
+3. ERC777 contract hooks can be used to re-enter caller contracts. Hence ensure no external calls are being made in hooks.
+4. use oracles to access non-manipulable time on-chain, and not block.timestamp etc
+5. to change approve(100) to approve(50), use decreaseAllowance(50), and not 2 approve txns of 100, 50, as in latter 2nd approve txn can be front-run to consume total approval of 150
+6. 1 way to generate sign without private key is by using ‘s’ in higher range in ecrecover(v,r,s) if ‘s’ is in lower-range in ecrecover, and vice-versa, i.e. (49) in ‘Till Solidity 201’ section
+7. all transfer()s should ideally return a bool according to ERC20 spec, but there are many who don’t, esp. contracts ≥ 0.4.22 that don’t return a bool, revert. SafeERC20 is a fix
+8. similarly, ownerOf() in ERC721 supposed to return address, but contracts ≥ 0.4.22 revert when returned bool. OZ’s ERC721 is a fix
+9. unexpected ETH balance change in contract: (1) contract’s a coinbase tx recipient (2) contract’s a selfdestruct() tx recipient
+10. use tx.origin for ‘man in the middle’ attack as destination contract won’t realise the meddling
+11. mappings INSIDE struct DON’T get deleted when struct is deleted
+12. view/pure functions revert on state change ONLY after v0.5.0
+13. low-level calls DO NOT REVERT on failing coz they return bools. ALSO, check their destination contract for existence, as these calls return true even if it does not exist
+14. shadowing of now, assert etc, and state vars of base contracts by derived contracts was removed in later sol versions
+15. in sol < 0.5.0, local vars could be used before declarations
+16. loop index in loops is user-controlled ⇒ DoS
+17. x =+ 1 ⇒ x assigned 1, as +1 is unary = 1. Unary operators deprecated since v0.5.0
+18. Critical addresses should be changed in 2 steps and not 1. That is, grant/approve + claim by new address, instead of direct change to new address
+19. DON’T make state changes INSIDE assert predicates. assert() → invariants (failures not expected), require() → validate user inputs (failures expected). Before v0.8.0, assert used INVALID opcode which consumed all remaining gas, require used REVERT opcode which refunded it. After 0.8, both are REVERT
+20. for sol < 0.5.0, visibility of fns was optional and defaulted to public. After, it became mandatory
