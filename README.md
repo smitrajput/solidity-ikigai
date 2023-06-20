@@ -214,3 +214,8 @@ positions 0x8be65246 // selector
 23. use of fn type vars in assembly can cause arbitrary jumps to code parts
 24. use abi.encode() > abi.encodePacked() as encodePacked results in hash collisions when multiple variable length args are being used, as encodePacked doesn’t zero-pad the args and also doesn’t save args length, for packing. If super-necessary to use encodePacked, ensure only 1 variable length arg
 25. variables with size < 32 bytes have dirty bits remaining on higher-order bits, due to previous writes. This data when passed as [msg.data](http://msg.data) can cause malleability/non-uniqueness
+26. in assembly, shl(x,y), shr(x,y), sar(x,y) [shift arithmetic right] means shift y by x bits, and NOT other way round
+27. RTLO: right-to-left-override Unicode char U+202E tricks users/auditors, hence avoid
+28. uninitialized (local) storage variable pointers can point to unexpected storage locations, hence were removed from solc ≥ 0.5.0
+29. uninitialized fn pointers showed unexpected behaviour inside constructor in 0.4.5 - 0.4.26 and 0.5.0 - 0.5.7. Then fixed.
+30. public visibility consumes more gas than external as args of public fns need to be copied from calldata to memory of EVM, and for external it can be left at calldata
