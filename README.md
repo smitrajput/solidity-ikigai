@@ -219,3 +219,7 @@ positions 0x8be65246 // selector
 28. uninitialized (local) storage variable pointers can point to unexpected storage locations, hence were removed from solc ≥ 0.5.0
 29. uninitialized fn pointers showed unexpected behaviour inside constructor in 0.4.5 - 0.4.26 and 0.5.0 - 0.5.7. Then fixed.
 30. public visibility consumes more gas than external as args of public fns need to be copied from calldata to memory of EVM, and for external it can be left at calldata
+31. look for DEAD code i.e. unused/unreachable code
+32. look for UNUSED fn return values. Indicates unchecked return values or missing logic at the fn call sites
+33. look for UNUSED state/local vars ⇒ missing logic or (gas) optimisation
+34. REDUNDANT fn statements might have side effects
