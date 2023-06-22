@@ -223,3 +223,8 @@ positions 0x8be65246 // selector
 32. look for UNUSED fn return values. Indicates unchecked return values or missing logic at the fn call sites
 33. look for UNUSED state/local vars ⇒ missing logic or (gas) optimisation
 34. REDUNDANT fn statements might have side effects
+35. Compiler Bugs (to understand their complexity):
+    1. 0.4.7 - 0.5.10: ABIEncoderV2: storage Type[] = int[] ⇒ data corruption. Type = uint, bool, etc 
+    2. 0.4.16 - 0.5.9: ABIEncoderV2: if constructor args were dynamic arrays, it reverted or decoded to invalid data
+    3. 0.4.6 - 0.5.10: ABIEncoderV2: storage arrays with structs or static arrays as elements, were not read properly when they were directly encoded using external calls (??) or abi.encode() (??)
+    4. 0.5.6 - 0.5.11: ABIEncoderV2: calldata Structs with dynamically encoded (??) AND statically sized members resulted in incorrect values being read
