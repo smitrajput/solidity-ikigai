@@ -233,3 +233,5 @@ positions 0x8be65246 // selector
     7. 0.6.0 - 0.6.8: ABIEncoderV2: accessing array slices with dynamically encoded base types (??), resulted in invalid data being read
     8. 0.5.14 - 0.6.8: ABIEncoderV2: string literals with ‘\\’ for escaping, rendered different string, when passed directly to encoding (??) or external fn calls
     9. 0.5.5 - 0.5.6: Optimizer enabled, double bitwise shifts (??), for large constants whose sum overflowed 256 bits, the shifting operations overflowed (??)
+    10. 0.5.5 - 0.5.7: doing index-based access of bytes1, byte2, bytes4….,bytes32, ‘byte’ in assembly returns unexpected value, as byte opcodes with second arg as 31 or constant expression which evaluates to 31, had a bug
+    11. 0.5.8 - 0.5.16, 0.6.0 - 0.6.1: YUL Optimizer: assignments to vars declared inside for loops were removed, while using YUL’s continue/break statement (?? as outside for loop, value anyways won’t retain as var was declared inside loop)
