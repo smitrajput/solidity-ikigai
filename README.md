@@ -228,3 +228,8 @@ positions 0x8be65246 // selector
     2. 0.4.16 - 0.5.9: ABIEncoderV2: if constructor args were dynamic arrays, it reverted or decoded to invalid data
     3. 0.4.6 - 0.5.10: ABIEncoderV2: storage arrays with structs or static arrays as elements, were not read properly when they were directly encoded using external calls (??) or abi.encode() (??)
     4. 0.5.6 - 0.5.11: ABIEncoderV2: calldata Structs with dynamically encoded (??) AND statically sized members resulted in incorrect values being read
+    5. 0.5.0 - 0.5.7: ABIEncoderV2: Packed storage: storage structs/arrays with types < 32 bytes, when encoded using ABIEncoderV2 (??) caused data corruption
+    6. 0.5.14 - 0.5.15: ABIEncoderV2 + YUL Optimizer: MLOAD/SLOAD calls were replaced with stale values
+    7. 0.6.0 - 0.6.8: ABIEncoderV2: accessing array slices with dynamically encoded base types (??), resulted in invalid data being read
+    8. 0.5.14 - 0.6.8: ABIEncoderV2: string literals with ‘\\’ for escaping, rendered different string, when passed directly to encoding (??) or external fn calls
+    9. 0.5.5 - 0.5.6: Optimizer enabled, double bitwise shifts (??), for large constants whose sum overflowed 256 bits, the shifting operations overflowed (??)
