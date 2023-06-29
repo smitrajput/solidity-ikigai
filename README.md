@@ -235,3 +235,7 @@ positions 0x8be65246 // selector
     9. 0.5.5 - 0.5.6: Optimizer enabled, double bitwise shifts (??), for large constants whose sum overflowed 256 bits, the shifting operations overflowed (??)
     10. 0.5.5 - 0.5.7: doing index-based access of bytes1, byte2, bytes4….,bytes32, ‘byte’ in assembly returns unexpected value, as byte opcodes with second arg as 31 or constant expression which evaluates to 31, had a bug
     11. 0.5.8 - 0.5.16, 0.6.0 - 0.6.1: YUL Optimizer: assignments to vars declared inside for loops were removed, while using YUL’s continue/break statement (?? as outside for loop, value anyways won’t retain as var was declared inside loop)
+    12. 0.3.0 - 0.5.17: derived contract was able to override a private fn in base contract
+    13. 0.1.6 - 0.6.6: tuple assignments with multiple stack slots for eg: nested tuples, resulted in invalid values
+    14. fixed in 0.7.3: dynamic arrays when assigned to types ≤ 16B (??), the supposedly deleted slots in the shrunk dynamic array, were not zeroed out by compiler, hence dirty data being reused in computations
+    15. fixed in 0.7.4: empty byte array when copied from memory/calldata to storage, and then if target array’s size is increased without adding new data in it, it resulted in data corruption (?? what data is corrupted as src array is empty?)
