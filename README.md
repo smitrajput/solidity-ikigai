@@ -239,3 +239,6 @@ positions 0x8be65246 // selector
     13. 0.1.6 - 0.6.6: tuple assignments with multiple stack slots for eg: nested tuples, resulted in invalid values
     14. fixed in 0.7.3: dynamic arrays when assigned to types ≤ 16B (??), the supposedly deleted slots in the shrunk dynamic array, were not zeroed out by compiler, hence dirty data being reused in computations
     15. fixed in 0.7.4: empty byte array when copied from memory/calldata to storage, and then if target array’s size is increased without adding new data in it, it resulted in data corruption (?? what data is corrupted as src array is empty?)
+    16. 0.2.0 - 0.6.5: very large memory arrays resulted in overlapping memory regions
+    17. 0.6.9 - 0.6.10: library fn parameters which were ‘calldata’ were read incorrectly when called by ‘using for’ types
+    18. 0.7.1 - 0.7.2: free fns were allowed to be declared with same name/parameters
