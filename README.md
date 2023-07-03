@@ -242,3 +242,6 @@ positions 0x8be65246 // selector
     16. 0.2.0 - 0.6.5: very large memory arrays resulted in overlapping memory regions
     17. 0.6.9 - 0.6.10: library fn parameters which were ‘calldata’ were read incorrectly when called by ‘using for’ types
     18. 0.7.1 - 0.7.2: free fns were allowed to be declared with same name/parameters
+36. Proxy-contract bugs:
+    1. state vars in impl contract MUST NOT BE initialized OUTSIDE of initialize(), as they’ll not be set when delegate call is made to them
+    2. contracts imported, should also follow proxy-based contract rules of no-constructor, only once callable initialize() and (a.)
