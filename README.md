@@ -245,3 +245,6 @@ positions 0x8be65246 // selector
 36. Proxy-contract bugs:
     1. state vars in impl contract MUST NOT BE initialized OUTSIDE of initialize(), as they’ll not be set when delegate call is made to them
     2. contracts imported, should also follow proxy-based contract rules of no-constructor, only once callable initialize() and (a.)
+    3. avoid using selfdestruct() and delegateCall() (??) inside impl contract as these mess with state of impl contract and not proxy contract
+    4. on upgrading impl contract for a given proxy, ENSURE Order/Layout/Type/Mutability of state vars stays the SAME
+    5. Fn Collision: Ensure you’re calling the right proxy contract as a malicious proxy might declare a fn with same fn ID (selector) as that of impl contract, in which case incorrect logic gets executed in malicious proxy
