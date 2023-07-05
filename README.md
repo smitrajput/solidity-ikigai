@@ -248,3 +248,10 @@ positions 0x8be65246 // selector
     3. avoid using selfdestruct() and delegateCall() (??) inside impl contract as these mess with state of impl contract and not proxy contract
     4. on upgrading impl contract for a given proxy, ENSURE Order/Layout/Type/Mutability of state vars stays the SAME
     5. Fn Collision: Ensure you’re calling the right proxy contract as a malicious proxy might declare a fn with same fn ID (selector) as that of impl contract, in which case incorrect logic gets executed in malicious proxy
+    6. Function Shadowing: ensure there are NO function ID (i.e. fn selector) COLLISIONS between proxy and impl contract. As such a collision will result in proxy fn being executed instead of impl fn
+
+
+## Security Pitfalls, Best Practices 201
+
+1. Block 1 has basic ERC20 checks - [link](https://www.youtube.com/watch?v=WGM1SF8twmw&list=PLYORQHvGMg-Urml835vJRec_hbPJYIb33)
+2. Fees taken out from transfers, and interest generated added to transfers result in token deflation and inflation respectively. See if app logic considers these in its accounting logic.
