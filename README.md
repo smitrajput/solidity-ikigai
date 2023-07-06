@@ -255,3 +255,6 @@ positions 0x8be65246 // selector
 
 1. Block 1 has basic ERC20 checks - [link](https://www.youtube.com/watch?v=WGM1SF8twmw&list=PLYORQHvGMg-Urml835vJRec_hbPJYIb33)
 2. Fees taken out from transfers, and interest generated added to transfers result in token deflation and inflation respectively. See if app logic considers these in its accounting logic.
+3. Block 2 - first 7 min, peculiar token standards with different flavours of features like black/whitelisting, censorship etc
+4. Guarded launch can be applied to: asset limits, asset types, user limits, usage limits (tx size/volume, daily/rate limit), composability limits, escrow (high value txns and pass/revert them via timelock/gov. Remove them later on), circuit breaker (pause/unpause, later remove), emergency shutdown (when circuit breaking doesn’t help, remove later to unguard)
+5. System specs (design): requirements ⇒ design ⇒ detailed specs (why and how) ⇒ evaluate
