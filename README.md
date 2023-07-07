@@ -258,3 +258,6 @@ positions 0x8be65246 // selector
 3. Block 2 - first 7 min, peculiar token standards with different flavours of features like black/whitelisting, censorship etc
 4. Guarded launch can be applied to: asset limits, asset types, user limits, usage limits (tx size/volume, daily/rate limit), composability limits, escrow (high value txns and pass/revert them via timelock/gov. Remove them later on), circuit breaker (pause/unpause, later remove), emergency shutdown (when circuit breaking doesn’t help, remove later to unguard)
 5. System specs (design): requirements ⇒ design ⇒ detailed specs (why and how) ⇒ evaluate
+6. System docs (actual impl): what and how. assets/actors/actions, trust/threat model.         specify ⇒ implement ⇒ document ⇒ evaluate
+7. Fn parameters: input validation. Fn args: order and type at call sites should match fn params
+8. Ensure fn return values are checked and used
