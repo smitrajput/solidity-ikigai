@@ -261,3 +261,6 @@ positions 0x8be65246 // selector
 6. System docs (actual impl): what and how. assets/actors/actions, trust/threat model.         specify ⇒ implement ⇒ document ⇒ evaluate
 7. Fn parameters: input validation. Fn args: order and type at call sites should match fn params
 8. Ensure fn return values are checked and used
+9. Fn timeliness, repetitiveness, order
+10. (Asset) Access Control Spec: assets/actors/actions, who/what/why/when/how-much, trust/threat mode & assumptions, specify ⇒ implement ⇒ enforce ⇒ evaluate
+11. Comments: should include rationale, assumptions
