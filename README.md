@@ -264,3 +264,6 @@ positions 0x8be65246 // selector
 9. Fn timeliness, repetitiveness, order
 10. (Asset) Access Control Spec: assets/actors/actions, who/what/why/when/how-much, trust/threat mode & assumptions, specify ⇒ implement ⇒ enforce ⇒ evaluate
 11. Comments: should include rationale, assumptions
+12. Testing: unit/functional/integration/regression(tests for code changes, revisions)/E2E. Smoke(overall func)/stress(extreme cases)/perf/security
+13. Check if initialisation of imp contract vars (fns and state vars) is done correctly
+14. Ensure cleanup of old state is done neatly.
