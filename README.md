@@ -267,3 +267,6 @@ positions 0x8be65246 // selector
 12. Testing: unit/functional/integration/regression(tests for code changes, revisions)/E2E. Smoke(overall func)/stress(extreme cases)/perf/security
 13. Check if initialisation of imp contract vars (fns and state vars) is done correctly
 14. Ensure cleanup of old state is done neatly.
+15. Audit logging: emitting events for critical changes in system
+16. Cryptography: keys, accounts, hashes, signs, randomness. Also ECDSA, keccak-256, BLS, RANDAO, VDF, ZK
+17. Any behaviour not defined in specs: undefined behaviour
