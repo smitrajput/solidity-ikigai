@@ -270,3 +270,5 @@ positions 0x8be65246 // selector
 15. Audit logging: emitting events for critical changes in system
 16. Cryptography: keys, accounts, hashes, signs, randomness. Also ECDSA, keccak-256, BLS, RANDAO, VDF, ZK
 17. Any behaviour not defined in specs: undefined behaviour
+18. Challenge constancy assumptions of constant values
+19. Freshness: txn nonce, oracle price
