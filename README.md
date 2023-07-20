@@ -1,14 +1,15 @@
 # solidity-ikigai
+
 Esoteric Solidity gas-optimisations + security learnings.
 
 ## Solidity Doc Notes
 
 1. Size of string literal “smit” is 4 bytes. Size of hex string literal hex”face” is 2 bytes.
 2. contract X is MostBaseLike, MostDerived { constructor() {} }.
-    1. order of contracts needs to be ‘written’ in the way shown above to allow solidity to compile. It basically says MostDerived contract needs to override MostBaseLike contract
-    2. constructors will be called in the following order: MostBaseLike → MostDerived → X
+   1. order of contracts needs to be ‘written’ in the way shown above to allow solidity to compile. It basically says MostDerived contract needs to override MostBaseLike contract
+   2. constructors will be called in the following order: MostBaseLike → MostDerived → X
 3. bytes, strings are right-padded, when converting them to 32-bytes (during encoding for e.g)
-4. abi.encode/encoeWithSelector/encodeWithSignature: static types encoded in place | position of dynamic types (relative to this encoding) | data of dynamic types (first length | then actual data). A call to a function with the signature `f(uint256,uint32[],bytes10,bytes)` with values `(0x123, [0x456, 0x789], "1234567890", "Hello, world!")` is encoded as 
+4. abi.encode/encoeWithSelector/encodeWithSignature: static types encoded in place | position of dynamic types (relative to this encoding) | data of dynamic types (first length | then actual data). A call to a function with the signature `f(uint256,uint32[],bytes10,bytes)` with values `(0x123, [0x456, 0x789], "1234567890", "Hello, world!")` is encoded as
 
 ```js
 positions 0x8be65246 // selector
@@ -24,42 +25,41 @@ positions 0x8be65246 // selector
 ```
 
 5. abi.encodePacked():
-    1. all types except arrays are packed unpadded (even strings, bytes are unpadded unless inside arrays)
-    2. all dynamic types are packed ***without*** length
-    3. all elements in array are padded (even strings, bytes)
+   1. all types except arrays are packed unpadded (even strings, bytes are unpadded unless inside arrays)
+   2. all dynamic types are packed **_without_** length
+   3. all elements in array are padded (even strings, bytes)
 6. calldata access in Yul: `x.length` for its length, `x.offset` for its byte-offset. They can be assigned to, though without any validation to be less than `calldatasize()`
 7. storage access in Yul: `x.slot` for its slot, `x.offset` for its byte-offset. They cannot be assigned to.
 8. Enable auto-gas-optimisation by compiler using `—via-ir` for compiling, which is a new code generation path for converting solidity code to opcodes. It only works if there is no inline assembly or if there is, then it is `memory-safe`. Now, inline assembly is memory-safe when all the memory that is accessed inside the assembly block is:
-    1. scratch space (`0x00 - 0x3f`)
-    2. allocated by solidity, for e.g. accessing memory within bounds of pre-created memory array
-    3. allocated by you, for e.g. {don’t this and (d) contradict?}
-        
-        ```solidity
-        // allocating 'length' more bytes
-        assembly {
-        	let pos := mload(0x40)
-          mstore(0x40, add(pos, length))
-        }
-        ```
-        
-    4. allocated by the free memory pointer (`0x40`), without updating the free memory pointer, for e.g. 
-        
-        ```solidity
-        assembly ("memory-safe") {
-          let p := mload(0x40)
-          returndatacopy(p, 0, returndatasize())
-          revert(p, returndatasize())
-        }
-        ```
-        
-    
-    ***Hence, the best way to create most gas-optimised code is by using both `—via-ir` and `memory-safe-assembly`.***
-    
+
+   1. scratch space (`0x00 - 0x3f`)
+   2. allocated by solidity, for e.g. accessing memory within bounds of pre-created memory array
+   3. allocated by you, for e.g. {don’t this and (d) contradict?}
+
+      ```solidity
+      // allocating 'length' more bytes
+      assembly {
+      	let pos := mload(0x40)
+        mstore(0x40, add(pos, length))
+      }
+      ```
+
+   4. allocated by the free memory pointer (`0x40`), without updating the free memory pointer, for e.g.
+
+      ```solidity
+      assembly ("memory-safe") {
+        let p := mload(0x40)
+        returndatacopy(p, 0, returndatasize())
+        revert(p, returndatasize())
+      }
+      ```
+
+   **_Hence, the best way to create most gas-optimised code is by using both `—via-ir` and `memory-safe-assembly`._**
 
 ### Issues / Potential PRs
 
 1. [Link](https://docs.soliditylang.org/en/v0.8.20/abi-spec.html#types): `int<M>`: two’s complement signed integer type of `M` bits, `0 < M <= 256`, `M % 8 == 0.` How come `256` for `int`?
-2. [Link](https://docs.soliditylang.org/en/v0.8.20/abi-spec.html#non-standard-packed-mode): ‘Furthermore, structs as well as nested arrays are not supported.’ Then also, ‘The encoding of `string` or `bytes` does not apply padding at the end, unless it is part of an array or ***struct*** (then it is padded to a multiple of 32 bytes)’. struct? Choose a side, bitch.
+2. [Link](https://docs.soliditylang.org/en/v0.8.20/abi-spec.html#non-standard-packed-mode): ‘Furthermore, structs as well as nested arrays are not supported.’ Then also, ‘The encoding of `string` or `bytes` does not apply padding at the end, unless it is part of an array or **_struct_** (then it is padded to a multiple of 32 bytes)’. struct? Choose a side, bitch.
 3. [Link](https://docs.soliditylang.org/en/v0.8.20/assembly.html#things-to-avoid): what exactly are we avoiding here?
 
 ## PwningEth Blog Summaries
@@ -69,6 +69,7 @@ positions 0x8be65246 // selector
 3. Polkadot Frontier EVM: ETH balances limit → 256 bits while Polka substrate balances limit → 128 bits. Bypass EVM implementation of transfer using (1 << 128) to 0 truncate and then add more balance to give attacker huge balance on transfer of wrapped assets.
 
 # Secureum Bootcamp
+
 ## Till Solidity 201
 
 1. Read eth white paper
@@ -149,11 +150,11 @@ positions 0x8be65246 // selector
 76. While packing storage of state vars, consider BOTH sizes of vars AND read/write preferences of those vars. Coz packing together vars which are not required to be read/written together can result in increased gas costs, instead of decreased ones. As the only var to be read needs to be isolated from others using masking of other vars which requires additional gas costs
 77. Dynamic array A -> stored at slot P. Then at P, current size of A is stored. A[0] is stored at keccak256(P), A[1] at keccak256(P)+1 and so on. These can be packed together too if possible
 78. Mapping M -> slot P: P stores nothing. M[key:k] i.e. value corresponding to 1st key, is stored at keccak256(h(k).P). h is 32 padded if k is value type. [h is keccak256() if k is string/byte type. → highly doubt this as k can never be reference type]
-79. bytes and string (S) storage at slot P: so P stores S.length*2 + S[0] if S[0] <= 31 bytes. And P stores only S.length*2 + 1 and S[0] is stored at keccack256(P) if S[0] >= 32 bytes. Now in P, if right-most digit (lowest bit) is 1 => S[0] storage starts at keccack256(P) and if right-most digit is 0 => S[0] storage starts at P {corresponding to S.length*2}.
+79. bytes and string (S) storage at slot P: so P stores S.length*2 + S[0] if S[0] <= 31 bytes. And P stores only S.length*2 + 1 and S[0] is stored at keccack256(P) if S[0] >= 32 bytes. Now in P, if right-most digit (lowest bit) is 1 => S[0] storage starts at keccack256(P) and if right-most digit is 0 => S[0] storage starts at P {corresponding to S.length\*2}.
 80. 1st 4 reserved memory slots: 1st 2 as scratch space for hashing, 3rd as free memory pointer, 4th as zero slot: used as initial value for dynamic memory arrays
 81. free memory pointer => location: 0x40, init value: 0x80, gets updated as memory gets used
 82. memory CAN'T BE FREED manually. So NEVER assume default 0 values for memory locations.
-83. Assembly: lang Yul, value types can directly be used as local vars, local vars that refer to memory/calldata evaluate to variable address NOT value hence effectively reference, storage vars defined by *.slot (location) and *.offset (position in that slot)
+83. Assembly: lang Yul, value types can directly be used as local vars, local vars that refer to memory/calldata evaluate to variable address NOT value hence effectively reference, storage vars defined by _.slot (location) and _.offset (position in that slot)
 84. sol 0.6, 0.7, 0.8 breaking changes in Solidity 201 (Block 2): 28:00
 85. mapping cannot be defined inside struct/array in memory (but allowed in storage) since Solidity 0.7
 86. OZ's ERC777's hooks are 1 way to avoid approve/transferFrom
@@ -181,7 +182,7 @@ positions 0x8be65246 // selector
 108. Clones: impl ERC1167 ie Minimal Proxy contracts: where all impl contracts are clones of a specific bytecode, and all calls are delegated to known fixed address
 109. Initializable: impl contracts NEED to impl initialize() to initialise the state of proxy contract RIGHT after impl contract is created (in context of proxy’s state || also in context of its own state), and this initialize() must only be callable ONCE. So Initializable lib helps impl contracts in implementing this. impl contract's constructor cannot be used for this, as that can only change state of impl contract, not of proxy's
 110. While both of these share the same interface for upgrades, in UUPS (**Universal Upgradeable Proxy Standard**) proxies the upgrade is handled by the implementation, and can eventually be removed. Transparent proxies, on the other hand, include the upgrade and admin logic in the proxy itself. This means `[TransparentUpgradeableProxy` 28](https://docs.openzeppelin.com/contracts/4.x/api/proxy#TransparentUpgradeableProxy)
- is more expensive to deploy than what is possible with UUPS proxies.
+      is more expensive to deploy than what is possible with UUPS proxies.
 111. Dappsys' DSProxy: 102, but also allows CREATION of impl contract along with making calls to it
 112. DSMath: SafeMath + fixed-point math + wad (18 decimals), ray (27 decimals) support (wmul, wdiv, rmul, rdiv, rpow)
 113. DSAuth: enables authorisation by DSGuard: has access control list (ACL) of [srcAddr][fnSign][destAddr] => boolean
@@ -224,7 +225,7 @@ positions 0x8be65246 // selector
 33. look for UNUSED state/local vars ⇒ missing logic or (gas) optimisation
 34. REDUNDANT fn statements might have side effects
 35. Compiler Bugs (to understand their complexity):
-    1. 0.4.7 - 0.5.10: ABIEncoderV2: storage Type[] = int[] ⇒ data corruption. Type = uint, bool, etc 
+    1. 0.4.7 - 0.5.10: ABIEncoderV2: storage Type[] = int[] ⇒ data corruption. Type = uint, bool, etc
     2. 0.4.16 - 0.5.9: ABIEncoderV2: if constructor args were dynamic arrays, it reverted or decoded to invalid data
     3. 0.4.6 - 0.5.10: ABIEncoderV2: storage arrays with structs or static arrays as elements, were not read properly when they were directly encoded using external calls (??) or abi.encode() (??)
     4. 0.5.6 - 0.5.11: ABIEncoderV2: calldata Structs with dynamically encoded (??) AND statically sized members resulted in incorrect values being read
@@ -250,7 +251,6 @@ positions 0x8be65246 // selector
     5. Fn Collision: Ensure you’re calling the right proxy contract as a malicious proxy might declare a fn with same fn ID (selector) as that of impl contract, in which case incorrect logic gets executed in malicious proxy
     6. Function Shadowing: ensure there are NO function ID (i.e. fn selector) COLLISIONS between proxy and impl contract. As such a collision will result in proxy fn being executed instead of impl fn
 
-
 ## Security Pitfalls, Best Practices 201
 
 1. Block 1 has basic ERC20 checks - [link](https://www.youtube.com/watch?v=WGM1SF8twmw&list=PLYORQHvGMg-Urml835vJRec_hbPJYIb33)
@@ -258,7 +258,7 @@ positions 0x8be65246 // selector
 3. Block 2 - first 7 min, peculiar token standards with different flavours of features like black/whitelisting, censorship etc
 4. Guarded launch can be applied to: asset limits, asset types, user limits, usage limits (tx size/volume, daily/rate limit), composability limits, escrow (high value txns and pass/revert them via timelock/gov. Remove them later on), circuit breaker (pause/unpause, later remove), emergency shutdown (when circuit breaking doesn’t help, remove later to unguard)
 5. System specs (design): requirements ⇒ design ⇒ detailed specs (why and how) ⇒ evaluate
-6. System docs (actual impl): what and how. assets/actors/actions, trust/threat model.         specify ⇒ implement ⇒ document ⇒ evaluate
+6. System docs (actual impl): what and how. assets/actors/actions, trust/threat model. specify ⇒ implement ⇒ document ⇒ evaluate
 7. Fn parameters: input validation. Fn args: order and type at call sites should match fn params
 8. Ensure fn return values are checked and used
 9. Fn timeliness, repetitiveness, order
@@ -272,3 +272,5 @@ positions 0x8be65246 // selector
 17. Any behaviour not defined in specs: undefined behaviour
 18. Challenge constancy assumptions of constant values
 19. Freshness: txn nonce, oracle price
+20. Challenge incentive, privacy assumptions
+21. Forks: context, assumptions, bugs, fixes
