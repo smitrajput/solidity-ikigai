@@ -274,3 +274,8 @@ positions 0x8be65246 // selector
 19. Freshness: txn nonce, oracle price
 20. Challenge incentive, privacy assumptions
 21. Forks: context, assumptions, bugs, fixes
+
+### Saltzer and Schroeder’s 10 Secure Design Principles:
+
+1. Least possible privilege to one and all.
+2. Privilege separation: multi-sig vs EOA
