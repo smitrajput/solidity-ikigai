@@ -279,3 +279,6 @@ positions 0x8be65246 // selector
 
 1. Least possible privilege to one and all.
 2. Privilege separation: multi-sig vs EOA
+3. Least Common Mechanism: reduce as many common points of failure (between multiple actors) as possible
+4. Fail-safe Defaults: start the system with fail-safe default valued params, then open it up to more values later. Eg: guarded launch
+5. Complete Mediation: enforce access control to ALL assets/actors/actions along ALL paths, at ALL times
