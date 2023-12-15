@@ -282,3 +282,6 @@ positions 0x8be65246 // selector
 3. Least Common Mechanism: reduce as many common points of failure (between multiple actors) as possible
 4. Fail-safe Defaults: start the system with fail-safe default valued params, then open it up to more values later. Eg: guarded launch
 5. Complete Mediation: enforce access control to ALL assets/actors/actions along ALL paths, at ALL times
+6. Economy of Mechanism: KISS principle for system design
+7. Open Design: system design should not be secret
+8. Psychological Acceptability: all security practices, system design should lead to cozy UI/UX for ease of human use and so they can apply protection mechanisms easily, with minimal risk
