@@ -285,3 +285,5 @@ positions 0x8be65246 // selector
 6. Economy of Mechanism: KISS principle for system design
 7. Open Design: system design should not be secret
 8. Psychological Acceptability: all security practices, system design should lead to cozy UI/UX for ease of human use and so they can apply protection mechanisms easily, with minimal risk
+9. Work Factor: cost of circumventing the mechanism vs resources of potential attack. Resources are high coz of high potential rewards and cost of circumventing is low in web3
+10. Compromise Recording: high alert systems to mitigate attack damages. Incident response plans, constant contracts monitoring
