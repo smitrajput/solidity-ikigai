@@ -287,3 +287,9 @@ positions 0x8be65246 // selector
 8. Psychological Acceptability: all security practices, system design should lead to cozy UI/UX for ease of human use and so they can apply protection mechanisms easily, with minimal risk
 9. Work Factor: cost of circumventing the mechanism vs resources of potential attack. Resources are high coz of high potential rewards and cost of circumventing is low in web3
 10. Compromise Recording: high alert systems to mitigate attack damages. Incident response plans, constant contracts monitoring
+
+### Audit Characteristics
+
+1. Types: New/Repeat, Fix - review of fixes from past audit, Retainer - continuous audit, Incident - exploit review/fix
+2. Pre-requisites: clear scope, repository, team, specification, documentation, threat model, prior reviews, timeline/effort/cost, engagement mode, point of contact
+3. Bugs classification (ToB style): access control, auditing/logging, authentication, configuration, cryptography, data exposure (unintended exposure of data), data validation, DoS, error reporting, patching, session mgmt (identification of authenticated users), timing
