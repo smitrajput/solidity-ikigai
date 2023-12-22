@@ -293,3 +293,4 @@ positions 0x8be65246 // selector
 1. Types: New/Repeat, Fix - review of fixes from past audit, Retainer - continuous audit, Incident - exploit review/fix
 2. Pre-requisites: clear scope, repository, team, specification, documentation, threat model, prior reviews, timeline/effort/cost, engagement mode, point of contact
 3. Bugs classification (ToB style): access control, auditing/logging, authentication, configuration, cryptography, data exposure (unintended exposure of data), data validation, DoS, error reporting, patching, session mgmt (identification of authenticated users), timing
+4. Process: read spec/docs ⇒ fast tools ⇒ manual analysis ⇒ slow/deep tools ⇒ discuss findings (with fellow auditors) ⇒ convey status ⇒ iterate ⇒ write report ⇒ deliver report ⇒ evaluate fixes
