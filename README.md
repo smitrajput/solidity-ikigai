@@ -294,3 +294,5 @@ positions 0x8be65246 // selector
 2. Pre-requisites: clear scope, repository, team, specification, documentation, threat model, prior reviews, timeline/effort/cost, engagement mode, point of contact
 3. Bugs classification (ToB style): access control, auditing/logging, authentication, configuration, cryptography, data exposure (unintended exposure of data), data validation, DoS, error reporting, patching, session mgmt (identification of authenticated users), timing
 4. Process: read spec/docs ⇒ fast tools ⇒ manual analysis ⇒ slow/deep tools ⇒ discuss findings (with fellow auditors) ⇒ convey status ⇒ iterate ⇒ write report ⇒ deliver report ⇒ evaluate fixes
+   1. Read spec/docs: specs - why?, docs - how?
+   2. Fast tools: for common pitfalls/best practices, MIGHT have false positives and negatives eg: slither, maru
