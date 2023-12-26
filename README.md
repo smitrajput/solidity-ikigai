@@ -296,3 +296,6 @@ positions 0x8be65246 // selector
 4. Process: read spec/docs ⇒ fast tools ⇒ manual analysis ⇒ slow/deep tools ⇒ discuss findings (with fellow auditors) ⇒ convey status ⇒ iterate ⇒ write report ⇒ deliver report ⇒ evaluate fixes
    1. Read spec/docs: specs - why?, docs - how?
    2. Fast tools: for common pitfalls/best practices, MIGHT have false positives and negatives eg: slither, maru
+   3. Manual analysis: most critical aspect. Manually compare spec with impl
+    1. Access control: correct, complete, consistent access of actors over assets/contracts
+    2. Asset Flow: who/when/which/why/where/what type/how much
