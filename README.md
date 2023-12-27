@@ -299,3 +299,6 @@ positions 0x8be65246 // selector
    3. Manual analysis: most critical aspect. Manually compare spec with impl
     1. Access control: correct, complete, consistent access of actors over assets/contracts
     2. Asset Flow: who/when/which/why/where/what type/how much
+    3. Control Flow: execution order
+    4. Data Flow: intra and inter procedural data flow
+    5. Inferring constraints: both solidity/EVM level and business/app logic level. With no spec/doc, constraints can be inferred from maximally occurring paths
