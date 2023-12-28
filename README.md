@@ -302,3 +302,6 @@ positions 0x8be65246 // selector
     3. Control Flow: execution order
     4. Data Flow: intra and inter procedural data flow
     5. Inferring constraints: both solidity/EVM level and business/app logic level. With no spec/doc, constraints can be inferred from maximally occurring paths
+    6. Dependencies: external code/data. Libraries/protocols/oracles, composability
+    7. **Assumptions**: identify and verify them
+    8. Checklists: ‘experts needs checklists’. Maintain one to avoid missed vulns
