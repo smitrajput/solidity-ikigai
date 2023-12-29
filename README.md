@@ -305,3 +305,5 @@ positions 0x8be65246 // selector
     6. Dependencies: external code/data. Libraries/protocols/oracles, composability
     7. **Assumptions**: identify and verify them
     8. Checklists: ‘experts needs checklists’. Maintain one to avoid missed vulns
+    9. Exploit scenarios: PoC with code/description. 
+    10. Likelihood: probability/difficulty, Impact: magnitude of implications, Severity: Likelihood + Impact
