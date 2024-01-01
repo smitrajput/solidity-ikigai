@@ -307,3 +307,8 @@ positions 0x8be65246 // selector
     8. Checklists: ‘experts needs checklists’. Maintain one to avoid missed vulns
     9. Exploit scenarios: PoC with code/description. 
     10. Likelihood: probability/difficulty, Impact: magnitude of implications, Severity: Likelihood + Impact
+5. Slow/Deep tools: formal verification/symbolic/fuzzing. False positives smtms challenging to evaluate, BUT true positives are as good as missed by best manual analysis. Eg: Echidna, MythX
+
+### Audit Analysis Techniques
+
+1. Specification (manual): assets/actors/actions, who/what/why/how
