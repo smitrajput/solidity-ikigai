@@ -312,3 +312,5 @@ positions 0x8be65246 // selector
 ### Audit Analysis Techniques
 
 1. Specification (manual): assets/actors/actions, who/what/why/how
+2. Documentation: implementation details
+3. Testing: unit/functional/integration/e2e/smoke
