@@ -314,3 +314,6 @@ positions 0x8be65246 // selector
 1. Specification (manual): assets/actors/actions, who/what/why/how
 2. Documentation: implementation details
 3. Testing: unit/functional/integration/e2e/smoke
+4. Static Analysis: technique to analyse program properties, without executing it. eg slither, maru (from CD)
+5. Fuzzing: automated software testing using invalid, unexpected, random inputs. eg echidna, harvey (from CD)
+6. Symbolic checking: technique to check program correctness using symbolic inputs to represent states and transitions, instead of real inputs to enumerate all states/transitions separately. eg manticore, mythril
