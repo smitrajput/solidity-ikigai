@@ -317,3 +317,4 @@ positions 0x8be65246 // selector
 4. Static Analysis: technique to analyse program properties, without executing it. eg slither, maru (from CD)
 5. Fuzzing: automated software testing using invalid, unexpected, random inputs. eg echidna, harvey (from CD)
 6. Symbolic checking: technique to check program correctness using symbolic inputs to represent states and transitions, instead of real inputs to enumerate all states/transitions separately. eg manticore, mythril
+7. Formal verification: is proving/disproving the correctness of algorithms/programs with respect to formal specification of property, using formal methods of mathematics ⇒ for complex bugs not easily found using manual analysis, simpler tools. It needs specification of the program being verified and techniques to compare specification with actual implementation. Eg: certora prover, VerX (CD’s), KEVM (Runtime verification’s)
