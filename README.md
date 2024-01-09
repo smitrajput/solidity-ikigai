@@ -320,3 +320,7 @@ positions 0x8be65246 // selector
 7. Formal verification: is proving/disproving the correctness of algorithms/programs with respect to formal specification of property, using formal methods of mathematics ⇒ for complex bugs not easily found using manual analysis, simpler tools. It needs specification of the program being verified and techniques to compare specification with actual implementation. Eg: certora prover, VerX (CD’s), KEVM (Runtime verification’s)
 8. Manual Analysis: slow, inconsistent, non-scalable, error-prone, but the only way to analyse business/app logic
 9. False positive: wasn’t a vuln but was reported. False negative: was a vuln but wasn’t reported. True negatives: missed findings or findings that were analysed and dismissed coz they were not vuln. Positive/Negative: reported or not.
+10. Security Tools: testing, test coverage, linting, static analysis, symbolic checkers, fuzzing, formal verification, visualizers, disassemblers, monitoring
+11. Slither (static analysis tool)
+    1. Detector API: to write custom analyses using python
+    2. SlithIR: slither intermediate representation, for simple and high-precision analysis
