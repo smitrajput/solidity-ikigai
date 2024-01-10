@@ -324,3 +324,5 @@ positions 0x8be65246 // selector
 11. Slither (static analysis tool)
     1. Detector API: to write custom analyses using python
     2. SlithIR: slither intermediate representation, for simple and high-precision analysis
+    3. Detectors: 75+ detectors for eg: reentrancy-eth, unprotected-upgrade, truffle/hardhat/embark/etherlime/dapp, in/exclude specific detectors
+    4. Printers: control-flow graph, call graph, contract summary, inheritance, fns, modifiers, vars, dependencies, SlihtIR, EVM-level
