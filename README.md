@@ -326,3 +326,5 @@ positions 0x8be65246 // selector
     2. SlithIR: slither intermediate representation, for simple and high-precision analysis
     3. Detectors: 75+ detectors for eg: reentrancy-eth, unprotected-upgrade, truffle/hardhat/embark/etherlime/dapp, in/exclude specific detectors
     4. Printers: control-flow graph, call graph, contract summary, inheritance, fns, modifiers, vars, dependencies, SlihtIR, EVM-level
+    5. Upgradeability: for Delegate call proxy pattern vulns
+    6. Code Similarity: detect similar solidity fns using ML trained models from etherscan verified 60k contracts, 850k fns. Esp. useful for forks
