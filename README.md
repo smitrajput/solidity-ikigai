@@ -328,3 +328,5 @@ positions 0x8be65246 // selector
     4. Printers: control-flow graph, call graph, contract summary, inheritance, fns, modifiers, vars, dependencies, SlihtIR, EVM-level
     5. Upgradeability: for Delegate call proxy pattern vulns
     6. Code Similarity: detect similar solidity fns using ML trained models from etherscan verified 60k contracts, 850k fns. Esp. useful for forks
+    7. Flat: contract flattening tool. 3 strategies: exporting most derived contracts, exporting all contracts in 1 file, local import: exports every contract in 1 separate file. Handles circular deps, supports truffle, hardhat etc
+    8. Slither-Format: auto-generate git-compatible patches/fixes for few detectors like unused state, naming convention, external fn, solc version pragma and more
