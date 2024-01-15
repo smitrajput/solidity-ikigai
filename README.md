@@ -330,3 +330,5 @@ positions 0x8be65246 // selector
     6. Code Similarity: detect similar solidity fns using ML trained models from etherscan verified 60k contracts, 850k fns. Esp. useful for forks
     7. Flat: contract flattening tool. 3 strategies: exporting most derived contracts, exporting all contracts in 1 file, local import: exports every contract in 1 separate file. Handles circular deps, supports truffle, hardhat etc
     8. Slither-Format: auto-generate git-compatible patches/fixes for few detectors like unused state, naming convention, external fn, solc version pragma and more
+    9. ERC Conformance: checking conformity with ERC-20, 721, 777, 165, 223, 1820
+    10. Slither-Prop: to generate code properties/invariants for testing with unit tests or Echidna (automatically??). Some ERC20 scenarios can also be tested
