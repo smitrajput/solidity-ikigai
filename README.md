@@ -332,3 +332,5 @@ positions 0x8be65246 // selector
     8. Slither-Format: auto-generate git-compatible patches/fixes for few detectors like unused state, naming convention, external fn, solc version pragma and more
     9. ERC Conformance: checking conformity with ERC-20, 721, 777, 165, 223, 1820
     10. Slither-Prop: to generate code properties/invariants for testing with unit tests or Echidna (automatically??). Some ERC20 scenarios can also be tested
+    11. New Detectors: arch for anyone to add new detectors
+12. Manticore: symbolic execution tool. Explore vast program states with symbolic inputs and auto-generate inputs for any desirable program state. Has python API for programmatic access to its analysis engine
