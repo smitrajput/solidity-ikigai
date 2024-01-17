@@ -334,3 +334,5 @@ positions 0x8be65246 // selector
     10. Slither-Prop: to generate code properties/invariants for testing with unit tests or Echidna (automatically??). Some ERC20 scenarios can also be tested
     11. New Detectors: arch for anyone to add new detectors
 12. Manticore: symbolic execution tool. Explore vast program states with symbolic inputs and auto-generate inputs for any desirable program state. Has python API for programmatic access to its analysis engine
+13. Echidna: fuzzing tool with 10 features. 3 steps to run:
+    1. Execute test runner contract + invariants. Returns counterexample if one of the call sequences is able to falsify the invariant.
