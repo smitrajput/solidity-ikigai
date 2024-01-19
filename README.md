@@ -337,3 +337,4 @@ positions 0x8be65246 // selector
 13. Echidna: fuzzing tool with 10 features. 3 steps to run:
     1. Execute test runner contract + invariants. Returns counterexample if one of the call sequences is able to falsify the invariant.
 14. Ethersplay: EVM disassembler tool. Binary ninja (reverse engineering platform for binaries) plugin that takes EVM bytecode as input and displays control flow graphs of all fns. Can also be used to display Manticore’s coverage
+15. Pyevmasm: assembler/disassembler tool for EVM. Provides CLI and python API for dis/assembling EVM.
