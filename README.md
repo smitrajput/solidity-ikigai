@@ -338,3 +338,4 @@ positions 0x8be65246 // selector
     1. Execute test runner contract + invariants. Returns counterexample if one of the call sequences is able to falsify the invariant.
 14. Ethersplay: EVM disassembler tool. Binary ninja (reverse engineering platform for binaries) plugin that takes EVM bytecode as input and displays control flow graphs of all fns. Can also be used to display Manticore’s coverage
 15. Pyevmasm: assembler/disassembler tool for EVM. Provides CLI and python API for dis/assembling EVM.
+16. Rattle: EVM Binary static analysis tool. Takes EVM byte strings as input, does flow-sensitive analysis (that considers control flow of statements. path-sensitive, context-sensitive analyses are others) to return control-flow graph, which is then converted to SSA (single static assignment) form with infinite registers, optimised by removing stacked instructions of DUPs, SWAPs, PUSHes, POPs, to make it more legible for analysing smart contracts
