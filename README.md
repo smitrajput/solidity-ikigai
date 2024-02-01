@@ -339,3 +339,5 @@ positions 0x8be65246 // selector
 14. Ethersplay: EVM disassembler tool. Binary ninja (reverse engineering platform for binaries) plugin that takes EVM bytecode as input and displays control flow graphs of all fns. Can also be used to display Manticore’s coverage
 15. Pyevmasm: assembler/disassembler tool for EVM. Provides CLI and python API for dis/assembling EVM.
 16. Rattle: EVM Binary static analysis tool. Takes EVM byte strings as input, does flow-sensitive analysis (that considers control flow of statements. path-sensitive, context-sensitive analyses are others) to return control-flow graph, which is then converted to SSA (single static assignment) form with infinite registers, optimised by removing stacked instructions of DUPs, SWAPs, PUSHes, POPs, to make it more legible for analysing smart contracts
+17. EVM CFG builder: tool to extract control-flow graph, fn names, attributes (payable, view etc) from EVM bytecode. Used by Ethersplay, Manticore, others.
+18. Crytic Compile: smart contract compilation library which supports solc, truffle, embark, etherscan, brownie etc. Used in slither, echidna, manticore etc
