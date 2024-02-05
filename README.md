@@ -343,3 +343,6 @@ positions 0x8be65246 // selector
 18. Crytic Compile: smart contract compilation library which supports solc, truffle, embark, etherscan, brownie etc. Used in slither, echidna, manticore etc
 19. Solc-Select: security helper tool to quickly switch between solc versions of the projects 
 20. Etheno: testing tool. **JSON RPC multiplexer** (allows interacting with multiple eth clients at same time), **analysis tool wrapper** to Manticore, Echidna by providing a json rpc client for the tools hence devs don’t need to write custom scripts to use these tools, and i**ntegrates with truffle, ganache** to allow local test network setup with 1 command and easily bootstrap manticore analysis ⇒ hence called swiss army knife for eth testing
+21. MythX (CD’s)
+    1. 46+ detectors, Maru (static) + Mythril (symbolic) + Harvey (fuzzing), API-based. 
+    2. Coverage covers all points (46+) from SWC (smart contract weakness classification) registry.
