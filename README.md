@@ -347,4 +347,6 @@ positions 0x8be65246 // selector
     1. 46+ detectors, Maru (static) + Mythril (symbolic) + Harvey (fuzzing), API-based. 
     2. Coverage covers all points (46+) from SWC (smart contract weakness classification) registry.
     3. Code needs to be submitted to their server for analysis in TLS encrypted fashion. Offered as security-as-a-service as running on cloud is more performant than locally.
-    4. MythX Privacy ensures code being shared is via TLS encryption and is not shared to anyone else in their servers. Results are also authed. 
+    4. MythX Privacy ensures code being shared is via TLS encryption and is not shared to anyone else in their servers. Results are also authed.
+    5. Performance: 3 scans ⇒ quick (5 min), standard (30 min), deep (90 min)
+    6. Access Modes: CLI, mythx.js, PythX, VSCode
