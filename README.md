@@ -350,3 +350,4 @@ positions 0x8be65246 // selector
     4. MythX Privacy ensures code being shared is via TLS encryption and is not shared to anyone else in their servers. Results are also authed.
     5. Performance: 3 scans ⇒ quick (5 min), standard (30 min), deep (90 min)
     6. Access Modes: CLI, mythx.js, PythX, VSCode
+22. Scribble (CD’s): verification tool. 1) annotate contract with specs using scribble lang 2) scribble converts these annotations to concrete assertions in this new contract which is equivalent to original 3) this new contract can now be used for MythX
