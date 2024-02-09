@@ -351,3 +351,5 @@ positions 0x8be65246 // selector
     5. Performance: 3 scans ⇒ quick (5 min), standard (30 min), deep (90 min)
     6. Access Modes: CLI, mythx.js, PythX, VSCode
 22. Scribble (CD’s): verification tool. 1) annotate contract with specs using scribble lang 2) scribble converts these annotations to concrete assertions in this new contract which is equivalent to original 3) this new contract can now be used for MythX
+23. Fuzzing-as-a-service (CD’s): uses Harvey to fuzz
+24. **Karl (CD’s):** real-time monitoring tool for newly deployed ethereum smart contracts and checking their vulns using Mythril
