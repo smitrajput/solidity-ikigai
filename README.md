@@ -353,3 +353,5 @@ positions 0x8be65246 // selector
 22. Scribble (CD’s): verification tool. 1) annotate contract with specs using scribble lang 2) scribble converts these annotations to concrete assertions in this new contract which is equivalent to original 3) this new contract can now be used for MythX
 23. Fuzzing-as-a-service (CD’s): uses Harvey to fuzz
 24. **Karl (CD’s):** real-time monitoring tool for newly deployed ethereum smart contracts and checking their vulns using Mythril
+25. Theo: exploitation tool for smart contracts, also frontrun/backrun txns etc
+26. **Visual Auditor:** VSCode extension must-have for manual analysis. Security-aware syntax/semantic highlighting, call graphs, and lot more for solidity, vyper
