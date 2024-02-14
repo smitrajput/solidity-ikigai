@@ -355,3 +355,5 @@ positions 0x8be65246 // selector
 24. **Karl (CD’s):** real-time monitoring tool for newly deployed ethereum smart contracts and checking their vulns using Mythril
 25. Theo: exploitation tool for smart contracts, also frontrun/backrun txns etc
 26. **Visual Auditor:** VSCode extension must-have for manual analysis. Security-aware syntax/semantic highlighting, call graphs, and lot more for solidity, vyper
+27. **Surya**: visualisation tool integrated with (26), for call graphs, inheritance graphs. Commands: graph/ftrace/flatten/describe etc
+28. SWC Registry: 1 place for ALL publicly known vulns by CD. 36 entries
