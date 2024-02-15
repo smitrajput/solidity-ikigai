@@ -357,3 +357,5 @@ positions 0x8be65246 // selector
 26. **Visual Auditor:** VSCode extension must-have for manual analysis. Security-aware syntax/semantic highlighting, call graphs, and lot more for solidity, vyper
 27. **Surya**: visualisation tool integrated with (26), for call graphs, inheritance graphs. Commands: graph/ftrace/flatten/describe etc
 28. SWC Registry: 1 place for ALL publicly known vulns by CD. 36 entries
+29. Securify (CS):  static analysis tool written in Datalog. 38+ detectors
+30. VerX (CS): formal verification tool that auto-proves temporal safety (??) of SCs. Based on 1) reducing temporal safety to reachability 2) efficient symbolic checking engine 3) delayed abstraction of states
