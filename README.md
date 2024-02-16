@@ -359,3 +359,5 @@ positions 0x8be65246 // selector
 28. SWC Registry: 1 place for ALL publicly known vulns by CD. 36 entries
 29. Securify (CS):  static analysis tool written in Datalog. 38+ detectors
 30. VerX (CS): formal verification tool that auto-proves temporal safety (??) of SCs. Based on 1) reducing temporal safety to reachability 2) efficient symbolic checking engine 3) delayed abstraction of states
+31. Karl (SmartDec): extensible static analyser
+32. K-Framework (RV): verification framework (??) that uses KEVM (first executable EVM spec). Serves as platform for building wide range of formal analysis (??) tools for EVM
