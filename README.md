@@ -361,3 +361,5 @@ positions 0x8be65246 // selector
 30. VerX (CS): formal verification tool that auto-proves temporal safety (??) of SCs. Based on 1) reducing temporal safety to reachability 2) efficient symbolic checking engine 3) delayed abstraction of states
 31. Karl (SmartDec): extensible static analyser
 32. K-Framework (RV): verification framework (??) that uses KEVM (first executable EVM spec). Serves as platform for building wide range of formal analysis (??) tools for EVM
+33. Certora Prover: formal verification tool. Rules need to be written in ‘Specify’ language which are verified by symbolic checking for all possible paths and spits counterexample if any. Uses ‘abstract interpretation’ and ‘constraint solving’ (2 fundamental computer science techniques)
+34. HEVM (DappHub): EVM impl used for unit/property testing and interactive debugging
