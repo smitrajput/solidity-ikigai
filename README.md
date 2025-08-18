@@ -363,3 +363,9 @@ positions 0x8be65246 // selector
 32. K-Framework (RV): verification framework (??) that uses KEVM (first executable EVM spec). Serves as platform for building wide range of formal analysis (??) tools for EVM
 33. Certora Prover: formal verification tool. Rules need to be written in ‘Specify’ language which are verified by symbolic checking for all possible paths and spits counterexample if any. Uses ‘abstract interpretation’ and ‘constraint solving’ (2 fundamental computer science techniques)
 34. HEVM (DappHub): EVM impl used for unit/property testing and interactive debugging
+
+### Findings Insights
+
+1. token decimals >/< 18
+2. check fn return values, esp. of external fn calls (other protocols) and low-level calls (eg checking recipient contract existence)
+3. sandwiching oracle update txn. Cure is update oracle in 2nd txn itself
