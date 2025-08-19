@@ -369,3 +369,6 @@ positions 0x8be65246 // selector
 1. token decimals >/< 18
 2. check fn return values, esp. of external fn calls (other protocols) and low-level calls (eg checking recipient contract existence)
 3. sandwiching oracle update txn. Cure is update oracle in 2nd txn itself
+4. initialize() in delegatecall proxy impl contract, can be front-run if not access controlled
+5. in CEI, events are indeed E (bridges)
+6. token ERC777, inflation, deflation support
